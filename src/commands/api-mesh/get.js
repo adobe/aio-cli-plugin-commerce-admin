@@ -38,7 +38,7 @@ class GetCommand extends Command {
 		const ignoreCache = await flags.ignoreCache;
 		const json = await flags.json;
 
-		const { imsOrgId, projectId, workspaceId, workspaceName } = await initSdk({
+		const { imsOrgId, imsOrgCode, projectId, workspaceId, workspaceName } = await initSdk({
 			ignoreCache,
 			verbose: !json,
 		});
@@ -46,16 +46,16 @@ class GetCommand extends Command {
 		let meshId = null;
 
 		try {
-			meshId = await getMeshId(imsOrgId, projectId, workspaceId, workspaceName);
+			meshId = await getMeshId(imsOrgCode, projectId, workspaceId, workspaceName);
 		} catch (err) {
 			this.error(
-				`Unable to get mesh ID. Please check the details and try again. RequestId: ${global.requestId}`,
+				`Unable to get mesh ID. Check the details and try again. RequestId: ${global.requestId}`,
 			);
 		}
 
 		if (meshId) {
 			try {
-				const mesh = await getMesh(imsOrgId, projectId, workspaceId, workspaceName, meshId);
+				const mesh = await getMesh(imsOrgCode, projectId, workspaceId, workspaceName, meshId);
 
 				if (mesh) {
 					this.log('Successfully retrieved mesh %s', JSON.stringify(mesh, null, 2));
@@ -78,7 +78,7 @@ class GetCommand extends Command {
 					return { ...mesh, meshUrl, imsOrgId, projectId, workspaceId, workspaceName };
 				} else {
 					logger.error(
-						`Unable to get mesh with the ID ${meshId}. Please check the mesh ID and try again. RequestId: ${global.requestId}`,
+						`Unable to get mesh with the ID ${meshId}. Check the mesh ID and try again. RequestId: ${global.requestId}`,
 						{ exit: false },
 					);
 				}
@@ -86,12 +86,12 @@ class GetCommand extends Command {
 				this.log(error.message);
 
 				this.error(
-					`Unable to get mesh. Please check the details and try again. If the error persists please contact support. RequestId: ${global.requestId}`,
+					`Unable to get mesh. Check the details and try again. If the error persists please contact support. RequestId: ${global.requestId}`,
 				);
 			}
 		} else {
 			this.error(
-				`Unable to get mesh config. No mesh found for Org(${imsOrgId}) -> Project(${projectId}) -> Workspace(${workspaceId}). Please check the details and try again.`,
+				`Unable to get mesh config. No mesh found for Org(${imsOrgCode}) -> Project(${projectId}) -> Workspace(${workspaceId}). Please check the details and try again.`,
 				{ exit: false },
 			);
 		}

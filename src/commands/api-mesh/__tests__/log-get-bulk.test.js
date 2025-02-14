@@ -249,7 +249,7 @@ describe('GetBulkLogCommand', () => {
 
 		expect(initRequestId).toHaveBeenCalled();
 		expect(initSdk).toHaveBeenCalled();
-		expect(getMeshId).toHaveBeenCalledWith('orgId', 'projectId', 'workspaceId', 'workspaceName');
+		expect(getMeshId).toHaveBeenCalledWith('orgCode', 'projectId', 'workspaceId', 'workspaceName');
 		expect(getPresignedUrls).toHaveBeenCalledWith(
 			'orgCode',
 			'projectId',

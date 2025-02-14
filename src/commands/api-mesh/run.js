@@ -82,10 +82,10 @@ class RunCommand extends Command {
 			if (fs.existsSync(path.join(process.cwd(), 'package.json'))) {
 				//If select flag is present then getMeshId for the specified org
 				if (flags.select) {
-					const { imsOrgId, projectId, workspaceId, workspaceName } = await initSdk({});
+					const { imsOrgCode, projectId, workspaceId, workspaceName } = await initSdk({});
 
 					try {
-						meshId = await getMeshId(imsOrgId, projectId, workspaceId, workspaceName);
+						meshId = await getMeshId(imsOrgCode, projectId, workspaceId, workspaceName);
 					} catch (err) {
 						throw new Error(
 							`Unable to get mesh ID. Please check the details and try again. RequestId: ${global.requestId}`,
@@ -93,7 +93,7 @@ class RunCommand extends Command {
 					}
 
 					try {
-						await getMeshArtifact(imsOrgId, projectId, workspaceId, workspaceName, meshId);
+						await getMeshArtifact(imsOrgCode, projectId, workspaceId, workspaceName, meshId);
 					} catch (err) {
 						throw new Error(
 							`Unable to retrieve mesh. Please check the details and try again. RequestId: ${global.requestId}`,

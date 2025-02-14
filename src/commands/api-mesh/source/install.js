@@ -38,6 +38,7 @@ class InstallCommand extends Command {
 		const ignoreCache = await flags.ignoreCache;
 		const {
 			imsOrgId,
+			imsOrgCode,
 			projectId,
 			workspaceId,
 			organizationName,
@@ -126,7 +127,7 @@ class InstallCommand extends Command {
 		}
 
 		try {
-			meshId = await getMeshId(imsOrgId, projectId, workspaceId, workspaceName);
+			meshId = await getMeshId(imsOrgCode, projectId, workspaceId, workspaceName);
 		} catch (err) {
 			this.error(
 				`Unable to get mesh ID. Please check the details and try again. RequestId: ${global.requestId}`,
@@ -140,7 +141,7 @@ class InstallCommand extends Command {
 		}
 
 		try {
-			const mesh = await getMesh(imsOrgId, projectId, workspaceId, meshId, workspaceName);
+			const mesh = await getMesh(imsOrgCode, projectId, workspaceId, meshId, workspaceName);
 
 			if (!mesh) {
 				this.error(

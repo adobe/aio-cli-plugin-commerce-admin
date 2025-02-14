@@ -18,14 +18,14 @@ class StatusCommand extends Command {
 
 		const { flags } = await this.parse(StatusCommand);
 		const ignoreCache = await flags.ignoreCache;
-		const { imsOrgId, imsOrgCode, projectId, workspaceId, workspaceName } = await initSdk({
+		const { imsOrgCode, projectId, workspaceId, workspaceName } = await initSdk({
 			ignoreCache,
 		});
 
 		let meshId = null;
 
 		try {
-			meshId = await getMeshId(imsOrgId, projectId, workspaceId, workspaceName);
+			meshId = await getMeshId(imsOrgCode, projectId, workspaceId, workspaceName);
 		} catch (err) {
 			// API Request failed
 			this.log(err.message);
@@ -37,12 +37,12 @@ class StatusCommand extends Command {
 		// API Request succeeded, but mesh could not be found
 		if (!meshId) {
 			this.error(
-				`Unable to get mesh status. No mesh found for Org(${imsOrgId}) -> Project(${projectId}) -> Workspace(${workspaceId}). Please check the details and try again.`,
+				`Unable to get mesh status. No mesh found for Org(${imsOrgCode}) -> Project(${projectId}) -> Workspace(${workspaceId}). Check the details and try again.`,
 			);
 		}
 
 		try {
-			const mesh = await getMesh(imsOrgId, projectId, workspaceId, workspaceName, meshId);
+			const mesh = await getMesh(imsOrgCode, projectId, workspaceId, workspaceName, meshId);
 			this.log(''.padEnd(102, '*'));
 			await this.displayMeshStatus(mesh, imsOrgCode, projectId, workspaceId);
 			this.log(''.padEnd(102, '*'));

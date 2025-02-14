@@ -25,7 +25,7 @@ require('@adobe-apimesh/mesh-builder');
 
 jest.mock('../../../helpers', () => ({
 	initSdk: jest.fn().mockResolvedValue({
-		imsOrgId: 'mockOrgId',
+		imsOrgCode: 'mockOrgCode',
 		projectId: 'mockProjectId',
 		workspaceId: 'mockWorkspaceId',
 		workspaceName: 'mockWorkspaceTitle',
@@ -865,13 +865,13 @@ describe('run command tests', () => {
 
 		expect(initSdk).toHaveBeenCalled();
 		expect(getMeshId).toHaveBeenCalledWith(
-			'mockOrgId',
+			'mockOrgCode',
 			'mockProjectId',
 			'mockWorkspaceId',
 			'mockWorkspaceTitle',
 		);
 		expect(getMeshArtifact).toHaveBeenCalledWith(
-			'mockOrgId',
+			'mockOrgCode',
 			'mockProjectId',
 			'mockWorkspaceId',
 			'mockWorkspaceTitle',

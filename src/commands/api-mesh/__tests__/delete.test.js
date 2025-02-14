@@ -53,7 +53,7 @@ const mockAutoApproveAction = Promise.resolve(false);
 describe('delete command tests', () => {
 	beforeEach(() => {
 		initSdk.mockResolvedValue({
-			imsOrgId: selectedOrg.id,
+			imsOrgCode: selectedOrg.code,
 			projectId: selectedProject.id,
 			workspaceId: selectedWorkspace.id,
 		});
@@ -117,13 +117,13 @@ describe('delete command tests', () => {
 
 		return runResult.catch(err => {
 			expect(err.message).toMatchInlineSnapshot(
-				`"Unable to delete. No mesh found for Org(1234) -> Project(5678) -> Workspace(123456789). Please check the details and try again."`,
+				`"Unable to delete mesh. No mesh found for Org(CODE1234@AdobeOrg) -> Project(5678) -> Workspace(123456789). Check the details and try again."`,
 			);
 			expect(logSpy.mock.calls).toMatchInlineSnapshot(`[]`);
 			expect(errorLogSpy.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "Unable to delete. No mesh found for Org(1234) -> Project(5678) -> Workspace(123456789). Please check the details and try again.",
+			    "Unable to delete mesh. No mesh found for Org(CODE1234@AdobeOrg) -> Project(5678) -> Workspace(123456789). Check the details and try again.",
 			  ],
 			]
 		`);
@@ -181,7 +181,7 @@ describe('delete command tests', () => {
 
 		await expect(runResult).rejects.toEqual(
 			new Error(
-				'Unable to delete mesh. Please check the details and try again. If the error persists please contact support. RequestId: dummy_request_id',
+				'Unable to delete mesh. Check the details and try again. If the error persists please contact support. RequestId: dummy_request_id',
 			),
 		);
 		expect(logSpy.mock.calls).toMatchInlineSnapshot(`
@@ -194,7 +194,7 @@ describe('delete command tests', () => {
 		expect(errorLogSpy.mock.calls).toMatchInlineSnapshot(`
 		[
 		  [
-		    "Unable to delete mesh. Please check the details and try again. If the error persists please contact support. RequestId: dummy_request_id",
+		    "Unable to delete mesh. Check the details and try again. If the error persists please contact support. RequestId: dummy_request_id",
 		  ],
 		]
 	`);
@@ -212,7 +212,7 @@ describe('delete command tests', () => {
 		expect(deleteMesh.mock.calls).toMatchInlineSnapshot(`
 		[
 		  [
-		    "1234",
+		    "CODE1234@AdobeOrg",
 		    "5678",
 		    "123456789",
 		    "mesh_id",

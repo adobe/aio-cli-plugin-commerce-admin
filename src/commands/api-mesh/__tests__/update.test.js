@@ -50,6 +50,7 @@ describe('update command tests', () => {
 	beforeEach(() => {
 		initSdk.mockResolvedValue({
 			imsOrgId: selectedOrg.id,
+			imsOrgCode: selectedOrg.code,
 			projectId: selectedProject.id,
 			workspaceId: selectedWorkspace.id,
 			workspaceName: selectedWorkspace.title,
@@ -325,13 +326,13 @@ describe('update command tests', () => {
 		const runResult = UpdateCommand.run();
 
 		await expect(runResult).rejects.toMatchInlineSnapshot(
-			`[Error: Unable to get mesh ID. Please check the details and try again. RequestId: dummy_request_id]`,
+			`[Error: Unable to get mesh ID. Check the details and try again. RequestId: dummy_request_id]`,
 		);
 		expect(logSpy.mock.calls).toMatchInlineSnapshot(`[]`);
 		expect(errorLogSpy.mock.calls).toMatchInlineSnapshot(`
 		[
 		  [
-		    "Unable to get mesh ID. Please check the details and try again. RequestId: dummy_request_id",
+		    "Unable to get mesh ID. Check the details and try again. RequestId: dummy_request_id",
 		  ],
 		]
 	`);
@@ -373,7 +374,7 @@ describe('update command tests', () => {
 		// );
 
 		await expect(runResult).rejects.toMatchInlineSnapshot(
-			`[Error: Unable to update the mesh. Please check the mesh configuration file and try again. If the error persists please contact support. RequestId: dummy_request_id]`,
+			`[Error: Unable to update the mesh. Check the mesh configuration file and try again. If the error persists please contact support. RequestId: dummy_request_id]`,
 		);
 		expect(logSpy.mock.calls).toMatchInlineSnapshot(`
 		[
@@ -385,7 +386,7 @@ describe('update command tests', () => {
 		expect(errorLogSpy.mock.calls).toMatchInlineSnapshot(`
 		[
 		  [
-		    "Unable to update the mesh. Please check the mesh configuration file and try again. If the error persists please contact support. RequestId: dummy_request_id",
+		    "Unable to update the mesh. Check the mesh configuration file and try again. If the error persists please contact support. RequestId: dummy_request_id",
 		  ],
 		]
 	`);
@@ -554,7 +555,7 @@ describe('update command tests', () => {
 		expect(initRequestId).toHaveBeenCalled();
 		expect(updateMesh.mock.calls[0]).toMatchInlineSnapshot(`
 		[
-		  "1234",
+		  "CODE1234@AdobeOrg",
 		  "5678",
 		  "123456789",
 		  "Workspace01",
@@ -722,9 +723,7 @@ describe('update command tests', () => {
 
 		const output = UpdateCommand.run();
 		await expect(output).rejects.toEqual(
-			new Error(
-				'Unable to import the files in the mesh config. Please check the file and try again.',
-			),
+			new Error('Unable to import the files in the mesh config. Check the file and try again.'),
 		);
 
 		expect(logSpy.mock.calls).toMatchInlineSnapshot(`
@@ -738,7 +737,7 @@ describe('update command tests', () => {
 		expect(errorLogSpy.mock.calls).toMatchInlineSnapshot(`
 		[
 		  [
-		    "Unable to import the files in the mesh config. Please check the file and try again.",
+		    "Unable to import the files in the mesh config. Check the file and try again.",
 		  ],
 		]
 	`);

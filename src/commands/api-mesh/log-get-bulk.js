@@ -147,14 +147,14 @@ class GetBulkLogCommand extends Command {
 			return;
 		}
 		logger.info('Calling initSdk...');
-		const { imsOrgId, imsOrgCode, projectId, workspaceId, workspaceName } = await initSdk({
+		const { imsOrgCode, projectId, workspaceId, workspaceName } = await initSdk({
 			ignoreCache,
 		});
 
 		// Retrieve meshId
 		let meshId = null;
 		try {
-			meshId = await getMeshId(imsOrgId, projectId, workspaceId, workspaceName);
+			meshId = await getMeshId(imsOrgCode, projectId, workspaceId, workspaceName);
 		} catch (err) {
 			this.error(`Unable to get mesh ID: ${err.message}.`);
 		}

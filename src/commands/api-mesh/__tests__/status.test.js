@@ -88,7 +88,7 @@ describe('status command tests', () => {
 	describe('unexpected error', () => {
 		test('should output mesh not found error when mesh does not exist', async () => {
 			getMeshId.mockResolvedValue(null);
-			const expectedMessage = `Unable to get mesh status. No mesh found for Org(${mockOrg.id}) -> Project(${mockProject.id}) -> Workspace(${mockWorkspace.id}). Please check the details and try again.`;
+			const expectedMessage = `Unable to get mesh status. No mesh found for Org(${mockOrg.code}) -> Project(${mockProject.id}) -> Workspace(${mockWorkspace.id}). Check the details and try again.`;
 			const runResult = StatusCommand.run();
 			await expect(runResult).rejects.toEqual(new Error(expectedMessage));
 			expect(errorLogSpy).toHaveBeenCalledWith(expectedMessage);

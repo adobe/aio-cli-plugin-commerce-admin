@@ -115,13 +115,13 @@ describe('get command tests', () => {
 
 		return runResult.catch(err => {
 			expect(err.message).toMatchInlineSnapshot(
-				`"Unable to get mesh config. No mesh found for Org(1234) -> Project(5678) -> Workspace(123456789). Please check the details and try again."`,
+				`"Unable to get mesh config. No mesh found for Org(1234) -> Project(5678) -> Workspace(123456789). Check the details and try again."`,
 			);
 			expect(logSpy.mock.calls).toMatchInlineSnapshot(`[]`);
 			expect(errorLogSpy.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "Unable to get mesh config. No mesh found for Org(1234) -> Project(5678) -> Workspace(123456789). Please check the details and try again.",
+			    "Unable to get mesh config. No mesh found for Org(1234) -> Project(5678) -> Workspace(123456789). Check the details and try again.",
 			  ],
 			]
 		`);
@@ -134,13 +134,13 @@ describe('get command tests', () => {
 
 		return runResult.catch(err => {
 			expect(err.message).toMatchInlineSnapshot(
-				`"Unable to get mesh ID. Please check the details and try again. RequestId: dummy_request_id"`,
+				`"Unable to get mesh ID. Check the details and try again. RequestId: dummy_request_id"`,
 			);
 			expect(logSpy.mock.calls).toMatchInlineSnapshot(`[]`);
 			expect(errorLogSpy.mock.calls).toMatchInlineSnapshot(`
 			[
 			  [
-			    "Unable to get mesh ID. Please check the details and try again. RequestId: dummy_request_id",
+			    "Unable to get mesh ID. Check the details and try again. RequestId: dummy_request_id",
 			  ],
 			]
 		`);
@@ -164,7 +164,7 @@ describe('get command tests', () => {
 
 		await expect(runResult).rejects.toEqual(
 			new Error(
-				'Unable to get mesh. Please check the details and try again. If the error persists please contact support. RequestId: dummy_request_id',
+				'Unable to get mesh. Check the details and try again. If the error persists please contact support. RequestId: dummy_request_id',
 			),
 		);
 		expect(logSpy.mock.calls).toMatchInlineSnapshot(`
@@ -177,7 +177,7 @@ describe('get command tests', () => {
 		expect(errorLogSpy.mock.calls).toMatchInlineSnapshot(`
 		[
 		  [
-		    "Unable to get mesh. Please check the details and try again. If the error persists please contact support. RequestId: dummy_request_id",
+		    "Unable to get mesh. Check the details and try again. If the error persists please contact support. RequestId: dummy_request_id",
 		  ],
 		]
 	`);

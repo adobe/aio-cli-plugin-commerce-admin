@@ -31,13 +31,13 @@ class FetchLogsCommand extends Command {
 		const ignoreCache = flags.ignoreCache;
 		const rayId = args.rayId;
 
-		const { imsOrgId, imsOrgCode, projectId, workspaceId } = await initSdk({
+		const { imsOrgCode, projectId, workspaceId } = await initSdk({
 			ignoreCache,
 		});
 
 		let meshId = null;
 		try {
-			meshId = await getMeshId(imsOrgId, projectId, workspaceId, meshId);
+			meshId = await getMeshId(imsOrgCode, projectId, workspaceId, meshId);
 			if (!meshId) {
 				throw new Error('MeshIdNotFound');
 			}

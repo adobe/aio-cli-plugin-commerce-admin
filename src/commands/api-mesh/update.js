@@ -73,10 +73,10 @@ class UpdateCommand extends Command {
 		let meshId = null;
 
 		try {
-			meshId = await getMeshId(imsOrgId, projectId, workspaceId);
+			meshId = await getMeshId(imsOrgCode, projectId, workspaceId);
 		} catch (err) {
 			this.error(
-				`Unable to get mesh ID. Please check the details and try again. RequestId: ${global.requestId}`,
+				`Unable to get mesh ID. Check the details and try again. RequestId: ${global.requestId}`,
 			);
 		}
 
@@ -90,7 +90,7 @@ class UpdateCommand extends Command {
 				data = JSON.parse(inputMeshData);
 			} catch (err) {
 				this.log(err.message);
-				this.error('Input mesh file is not a valid JSON. Please check the file provided.');
+				this.error('Input mesh file is not a valid JSON. Check the file provided.');
 			}
 		}
 
@@ -109,9 +109,7 @@ class UpdateCommand extends Command {
 				data = await importFiles(data, filesList, args.file, flags.autoConfirmAction);
 			} catch (err) {
 				this.log(err.message);
-				this.error(
-					'Unable to import the files in the mesh config. Please check the file and try again.',
-				);
+				this.error('Unable to import the files in the mesh config. Check the file and try again.');
 			}
 		}
 
@@ -125,7 +123,7 @@ class UpdateCommand extends Command {
 				data.secrets = encryptedSecrets;
 			} catch (err) {
 				this.log(err.message);
-				this.error('Unable to import secrets. Please check the file and try again.');
+				this.error('Unable to import secrets. Check the file and try again.');
 			}
 		}
 
@@ -141,7 +139,7 @@ class UpdateCommand extends Command {
 			if (shouldContinue) {
 				try {
 					const response = await updateMesh(
-						imsOrgId,
+						imsOrgCode,
 						projectId,
 						workspaceId,
 						workspaceName,
@@ -169,7 +167,7 @@ class UpdateCommand extends Command {
 					this.log(error.message);
 
 					this.error(
-						`Unable to update the mesh. Please check the mesh configuration file and try again. If the error persists please contact support. RequestId: ${global.requestId}`,
+						`Unable to update the mesh. Check the mesh configuration file and try again. If the error persists please contact support. RequestId: ${global.requestId}`,
 					);
 				}
 			} else {

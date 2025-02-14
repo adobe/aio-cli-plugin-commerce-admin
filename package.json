@@ -1,6 +1,6 @@
 {
 	"name": "@adobe/aio-cli-plugin-api-mesh",
-	"version": "4.1.1-beta.1",
+	"version": "5.0.0-beta",
 	"description": "Adobe I/O CLI plugin to develop and manage API mesh sources",
 	"keywords": [
 		"oclif-plugin"

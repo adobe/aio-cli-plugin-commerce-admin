@@ -43,7 +43,7 @@ class ListLogsCommand extends Command {
 		let meshId = null;
 
 		try {
-			meshId = await getMeshId(imsOrgId, projectId, workspaceId, workspaceName);
+			meshId = await getMeshId(imsOrgCode, projectId, workspaceId, workspaceName);
 		} catch (err) {
 			this.error(
 				`Unable to get mesh ID. Check the details and try again. RequestId: ${global.requestId}`,

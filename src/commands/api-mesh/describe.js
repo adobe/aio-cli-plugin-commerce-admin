@@ -30,12 +30,12 @@ class DescribeCommand extends Command {
 
 		const { flags } = await this.parse(DescribeCommand);
 		const ignoreCache = await flags.ignoreCache;
-		const { imsOrgId, projectId, workspaceId, workspaceName } = await initSdk({
+		const { imsOrgCode, imsOrgId, projectId, workspaceId, workspaceName } = await initSdk({
 			ignoreCache,
 		});
 
 		try {
-			const meshDetails = await describeMesh(imsOrgId, projectId, workspaceId, workspaceName);
+			const meshDetails = await describeMesh(imsOrgCode, projectId, workspaceId, workspaceName);
 
 			if (meshDetails) {
 				const { meshId } = meshDetails;
