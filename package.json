@@ -37,13 +37,13 @@
 		"version": "oclif-dev readme && git add README.md"
 	},
 	"dependencies": {
-		"@adobe-apimesh/mesh-builder": "2.0.0",
+		"@adobe-apimesh/mesh-builder": "2.1.4-beta.1",
 		"@adobe/aio-cli-lib-console": "^5.0.0",
 		"@adobe/aio-lib-core-config": "^5.0.0",
 		"@adobe/aio-lib-core-logging": "^3.0.0",
 		"@adobe/aio-lib-env": "^3.0.0",
 		"@adobe/aio-lib-ims": "^7.0.1",
-		"@adobe/plugin-hooks": "0.3.2",
+		"@adobe/plugin-hooks": "0.3.3-beta.1",
 		"@adobe/plugin-on-fetch": "0.1.1",
 		"@adobe/plugin-source-headers": "^0.0.1",
 		"@envelop/disable-introspection": "^6.0.0",
